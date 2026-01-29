@@ -1,0 +1,11 @@
+.logo {
+    height: 80px;
+    width: 100px;
+    /* border: round;
+    border-radius: 25px; */
+}
+
+.navbar {
+    background: #043013;
+    /* background: radial-gradient(circle, rgba(250, 142, 189, 1) 0%, rgba(153, 201, 255, 1) 100%); */
+}
