@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const API_URL = "http://localhost:3001/api";
+  const API_URL = "https://bug-free-space-memory-pj6w6rrwx6wq36947-3001.app.github.dev/api";
+
+  const {store, dispatch} = useGlobalReducer();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,6 +30,7 @@ export const Login = () => {
       }
 
       sessionStorage.setItem("jwt-token", data.access_token);
+      dispatch({type:"setToken", payload:data.access_token})
       navigate("/private");
 
     } catch (err) {
@@ -41,27 +45,13 @@ export const Login = () => {
       <form onSubmit={handleLogin}>
         <div className="mb-3">
           <label>Email</label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required/>
         </div>
         <div className="mb-3">
           <label>Contraseña</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required/>
         </div>
-        <button className="btn btn-primary w-100" type="submit">
-          Ingresar
-        </button>
+        <button className="btn btn-primary w-100" type="submit">Ingresar</button>
       </form>
     </div>
   );

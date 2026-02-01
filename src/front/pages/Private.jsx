@@ -7,18 +7,16 @@ export const Private = () => {
   const [error, setError] = useState("");
   const [user, setUser] = useState(null);
 
-  const API_URL = "http://localhost:3001/api";
+  const API_URL = "https://bug-free-space-memory-pj6w6rrwx6wq36947-3001.app.github.dev/api";
 
   useEffect(() => {
     const token = sessionStorage.getItem("jwt-token");
 
-    // ❌ Si no hay token → login
     if (!token) {
       navigate("/login");
       return;
     }
 
-    // ✅ Validar token contra backend
     const validateToken = async () => {
       try {
         const resp = await fetch(`${API_URL}/hello/private`, {
@@ -28,7 +26,6 @@ export const Private = () => {
         });
 
         if (!resp.ok) {
-          // Token inválido o expirado
           sessionStorage.removeItem("jwt-token");
           navigate("/login");
           return;
@@ -61,8 +58,7 @@ export const Private = () => {
       <div className="card">
         <div className="card-body">
           <h2 className="card-title text-center mb-4">
-            Área privada 🔒
-          </h2>
+            Área privada 🔒 </h2>
 
           {error && (
             <div className="alert alert-danger">{error}</div>

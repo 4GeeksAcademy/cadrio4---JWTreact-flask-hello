@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
+import Logo from "../assets/img/Logo.png";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
 export const Home = () => {
@@ -9,7 +9,7 @@ export const Home = () => {
 	const loadMessage = async () => {
 		try {
 			const backendUrl = import.meta.env.VITE_BACKEND_URL
-
+			
 			if (!backendUrl) throw new Error("VITE_BACKEND_URL is not defined in .env file")
 
 			const response = await fetch(backendUrl + "/api/hello")
@@ -34,9 +34,8 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-5">
-			<h1 className="display-4">Hello Rigo!!</h1>
 			<p className="lead">
-				<img src={rigoImageUrl} className="img-fluid rounded-circle mb-3" alt="Rigo Baby" />
+				<img src={Logo} className="img-fluid rounded-circle mb-3" alt="logo" />
 			</p>
 			<div className="alert alert-info">
 				{store.message ? (
